@@ -1,10 +1,12 @@
 #!/bin/bash
 flag_f=0
 flag_op=0
+exec 2>>log
 while [[ $flag_f -ne 1 ]]
 do
     flag_p=0
-    read -p "Введите логин: " login_inp
+    echo "Введите логин: "
+    read login_inp
     len_login=${#login_inp}
     if [[ $len_login -gt 1 ]]
     then
@@ -19,15 +21,16 @@ do
     then
     while [[ $flag_op -eq 0 ]]
     do
-        read -p "Введите пароль: " pswd
+        echo "Введите пароль: "
+        read -s pswd
         len_pswd=${#pswd}
         if [[ $len_pswd -gt 1 ]]
         then
-        echo "Вы успешно зарегистрировались!" 
-        echo $login_inp >> database 
-        echo $pswd | md5sum >> database
-        flag_op=1
-        flag_f=1
+            echo "Вы успешно зарегистрировались!" 
+            echo $login_inp >> database 
+            echo $pswd | md5sum >> database
+            flag_op=1
+            flag_f=1
         else
             echo "Пароль должен содержать больше 1 символа!"
         fi

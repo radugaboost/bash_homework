@@ -1,9 +1,11 @@
 #!/bin/bash
+exec 2>>log
 cnt=3
 flag_f=0
 while [[ $flag_f -eq 0 ]]
 do
-    read -p "Введите логин: " user_inp
+    echo "Введите логин: " 
+    read user_inp
     flag_p=0
     flag_g=0
     flag_y=0
